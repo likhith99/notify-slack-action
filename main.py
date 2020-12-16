@@ -25,7 +25,7 @@ def actionStatus(status):
     if status == 'success':
         return 'works'
     elif status == 'failure':
-        return '@here'
+        return '<!here>'
 
     return 'passed with warnings'
 
