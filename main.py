@@ -23,9 +23,9 @@ def actionStatus(status):
     """
 
     if status == 'success':
-        return 'passed'
+        return 'works'
     elif status == 'failure':
-        return 'failed'
+        return 'fails'
 
     return 'passed with warnings'
 
@@ -38,7 +38,7 @@ def actionEmoji(status):
     if status == 'success':
         return ':sunglasses:'
     elif status == 'failure':
-        return ':worried:'
+        return ':fire:'
 
     return ':zipper_mouth_face:'
 
@@ -57,17 +57,15 @@ def notify_slack(job_status, notify_when):
     status_message = actionStatus(job_status)
     emoji = actionEmoji(job_status)
 
-    message = f'{emoji} {workflow} {status_message} in <{repo_url}|{repo}@{branch}> on <{commit_url}|{commit[:7]}>.'
+    message = f'{emoji} {workflow} {status_message}.'
 
     payload = {
         'attachments': [
             {
                 'text': message,
                 'fallback': 'New Github Action Run',
-                'pretext': 'New Github Action Run',
                 'color': color,
                 'mrkdwn_in': ['text'],
-                'footer': 'Developed by <https://www.ravsam.in|RavSam>',
             }
         ]
     }
