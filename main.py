@@ -25,7 +25,7 @@ def actionStatus(status):
     if status == 'success':
         return 'works'
     elif status == 'failure':
-        return '<!here>'
+        return 'failed <!here>'
 
     return 'passed with warnings'
 
@@ -57,7 +57,7 @@ def notify_slack(job_status, notify_when):
     status_message = actionStatus(job_status)
     emoji = actionEmoji(job_status)
 
-    message = f'{emoji} {workflow} {status_message} in <{repo_url}|{repo}@{branch}> on <{commit_url}|{commit[:7]}>.'
+    message = f'{emoji} {workflow} {status_message} for the test <{repo_url}|{repo}@{branch}> on <{commit_url}|{commit[:7]}>.'
 
     payload = {
         'attachments': [
