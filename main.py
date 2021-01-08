@@ -57,7 +57,7 @@ def notify_slack(job_status, notify_when):
     status_message = actionStatus(job_status)
     emoji = actionEmoji(job_status)
 
-    message = f'{emoji} {workflow} {status_message}.'
+    message = f'{emoji} {workflow} {status_message} in <{repo_url}|{repo}@{branch}> on <{commit_url}|{commit[:7]}>.'
 
     payload = {
         'attachments': [
